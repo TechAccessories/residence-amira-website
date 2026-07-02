@@ -1,0 +1,38 @@
+@import './variables.css';
+
+.property-detail-page {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.property-hero {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.property-header {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.price {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.property-content {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.property-copy {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.amenities-list {
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+  color: var(--color-muted);
+}

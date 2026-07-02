@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "home": "Home",
+    "properties": "Properties",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "common": {
+    "loading": "Loading…",
+    "close": "Close",
+    "cancel": "Cancel",
+    "viewOnGoogleMaps": "View on Google Maps",
+    "noImage": "No Image Available"
+  },
+  "home": {
+    "eyebrow": "Family stays in the heart of the city",
+    "title": "Résidence Amira welcomes you with comfort and convenience.",
+    "lead": "Discover curated homes with spacious interiors, modern amenities, and a warm atmosphere for short or extended stays.",
+    "viewProperties": "View properties",
+    "learnMore": "Learn more",
+    "featuredEyebrow": "Featured homes",
+    "featuredTitle": "Some of our most loved properties",
+    "emptyFeatured": "No featured properties are available right now."
+  },
+  "properties": {
+    "eyebrow": "Stay options",
+    "title": "Available properties",
+    "lead": "Browse our selection of comfortable homes for a relaxing stay.",
+    "empty": "No properties are available at the moment."
+  },
+  "about": {
+    "eyebrow": "About us",
+    "title": "Welcome to Résidence Amira",
+    "p1": "Résidence Amira is a welcoming rental destination designed for travelers who value comfort, location, and thoughtful hospitality.",
+    "p2": "We focus on clean, modern spaces and dependable service so guests can enjoy a calm, convenient home base for business trips, family visits, or longer stays."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Get in touch",
+    "lead": "Have questions about availability or a stay? Share a few details and we will be in touch shortly.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "sendMessage": "Send message"
+  },
+  "propertyCard": {
+    "viewDetails": "View Details",
+    "priceUnavailable": "Price available on request",
+    "perNight": "{price} TND / night"
+  },
+  "bookingForm": {
+    "title": "Request a stay",
+    "caption": "Choose your dates and send a booking request.",
+    "guestName": "Guest name",
+    "email": "Email",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "dateHelp": "Unavailable dates are highlighted by the booking calendar.",
+    "requestBooking": "Request booking",
+    "submitting": "Submitting…",
+    "submittedMessage": "A request has been sent for property #{propertyId}.",
+    "fillRequired": "Please fill in all required booking details.",
+    "checkOutLater": "Check-out must be later than check-in.",
+    "overlapError": "Those dates overlap with an existing booking. Please choose a different range.",
+    "submittedSuccess": "Your booking request has been submitted successfully.",
+    "submitError": "Unable to submit the booking request right now."
+  },
+  "propertyDetail": {
+    "eyebrow": "Vacation rental",
+    "price": "Price",
+    "eyebrow": "Vacation rental",
+    "bookingRequest": "Booking request",
+    "bookingModalTitle": "Send your request",
+    "guestCount": "Guests",
+    "beds": "Beds",
+    "maxGuests": "Max Guests",
+    "availability": "Availability",
+    "descriptionTitle": "Description",
+    "amenitiesTitle": "Amenities",
+    "houseRules": "House Rules",
+    "location": "Location",
+    "requestBooking": "Request Booking",
+    "checkCalendar": "Check the calendar below",
+    "submitted": "Your booking request has been sent successfully.",
+    "submitError": "Unable to submit your booking request right now.",
+    "bookingRequest": "Booking request",
+    "reserveYourStay": "Reserve your stay",
+    "bookingModalTitle": "Send your request",
+    "messageOptional": "Message (optional)",
+    "confirmTitle": "Confirm your booking request",
+    "confirmLead": "Please review the booking details before sending your request.",
+    "confirmAndSend": "Confirm & Send Request",
+    "sending": "Sending request…",
+    "errors": {
+      "chooseDates": "Please choose both check-in and check-out dates.",
+      "checkOutAfterCheckIn": "Check-out must be after check-in.",
+      "validGuests": "Please enter a valid number of guests.",
+      "datesUnavailable": "Those dates are unavailable; please choose a different range."
+    }
+  },
+  "propertyCalendar": {
+    "booked": "Booked",
+    "occupied": "Occupied",
+    "available": "Available",
+    "status": "Status",
+    "guest": "Guest",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "close": "Close"
+  },
+  "footer": {
+    "copy": "© {{year}} Résidence Amira. All rights reserved."
+  }
+}

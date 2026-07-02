@@ -1,0 +1,39 @@
+@import './variables.css';
+
+.image-gallery {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.gallery-main-image {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.gallery-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.gallery-thumb {
+  border: 2px solid transparent;
+  padding: 0;
+  background: none;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-thumb.active {
+  border-color: var(--color-accent);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 72px;
+  object-fit: cover;
+  display: block;
+}

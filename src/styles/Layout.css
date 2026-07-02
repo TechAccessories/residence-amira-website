@@ -1,0 +1,12 @@
+@import './variables.css';
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  padding: var(--spacing-xl) var(--spacing-md);
+}

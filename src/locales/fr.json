@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "properties": "Locations",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "common": {
+    "loading": "Chargement…",
+    "close": "Fermer",
+    "cancel": "Annuler",
+    "viewOnGoogleMaps": "Voir sur Google Maps",
+    "noImage": "Aucune image disponible"
+  },
+  "home": {
+    "eyebrow": "Séjours familiaux au cœur de la ville",
+    "title": "Résidence Amira vous accueille avec confort et convivialité.",
+    "lead": "Découvrez des logements sélectionnés avec des intérieurs spacieux, des équipements modernes et une atmosphère chaleureuse pour des séjours courts ou prolongés.",
+    "viewProperties": "Voir les locations",
+    "learnMore": "En savoir plus",
+    "featuredEyebrow": "Maisons en vedette",
+    "featuredTitle": "Quelques-unes de nos propriétés les plus appréciées",
+    "emptyFeatured": "Aucune propriété en vedette n'est disponible pour le moment."
+  },
+  "properties": {
+    "eyebrow": "Options de séjour",
+    "title": "Propriétés disponibles",
+    "lead": "Parcourez notre sélection de maisons confortables pour un séjour relaxant.",
+    "empty": "Aucune propriété n'est disponible pour le moment."
+  },
+  "about": {
+    "eyebrow": "À propos",
+    "title": "Bienvenue à la Résidence Amira",
+    "p1": "La Résidence Amira est une destination de location accueillante conçue pour les voyageurs qui apprécient le confort, l'emplacement et une hospitalité soignée.",
+    "p2": "Nous privilégions des espaces propres et modernes ainsi qu'un service fiable afin que les hôtes puissent profiter d'une base calme et pratique pour les déplacements professionnels, les visites familiales ou les longs séjours."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Contactez-nous",
+    "lead": "Des questions sur la disponibilité ou un séjour ? Donnez-nous quelques informations et nous vous répondrons rapidement.",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "sendMessage": "Envoyer le message"
+  },
+  "propertyCard": {
+    "viewDetails": "Voir les détails",
+    "priceUnavailable": "Prix disponible sur demande",
+    "perNight": "{price} TND / nuit"
+  },
+  "bookingForm": {
+    "title": "Demander un séjour",
+    "caption": "Choisissez vos dates et envoyez une demande de réservation.",
+    "guestName": "Nom du voyageur",
+    "email": "Email",
+    "checkIn": "Arrivée",
+    "checkOut": "Départ",
+    "dateHelp": "Les dates indisponibles sont mises en évidence dans le calendrier.",
+    "requestBooking": "Demander la réservation",
+    "submitting": "Envoi…",
+    "submittedMessage": "Une demande a été envoyée pour la propriété n°{propertyId}.",
+    "fillRequired": "Veuillez remplir tous les champs requis pour la réservation.",
+    "checkOutLater": "La date de départ doit être après la date d'arrivée.",
+    "overlapError": "Ces dates se chevauchent avec une réservation existante. Veuillez choisir une autre période.",
+    "submittedSuccess": "Votre demande de réservation a été envoyée avec succès.",
+    "submitError": "Impossible d'envoyer la demande de réservation pour le moment."
+  },
+  "propertyDetail": {
+    "eyebrow": "Location",
+    "price": "Prix",
+    "eyebrow": "Location de vacances",
+    "bookingRequest": "Demande de réservation",
+    "bookingModalTitle": "Envoyez votre demande",
+    "guestCount": "Invités",
+    "beds": "Lits",
+    "maxGuests": "Nombre max de personnes",
+    "availability": "Disponibilité",
+    "descriptionTitle": "Description",
+    "amenitiesTitle": "Équipements",
+    "houseRules": "Règles de la maison",
+    "location": "Emplacement",
+    "requestBooking": "Demander la réservation",
+    "checkCalendar": "Consultez le calendrier ci-dessous",
+    "submitted": "Votre demande de réservation a été envoyée avec succès.",
+    "submitError": "Impossible d'envoyer votre demande de réservation pour le moment.",
+    "bookingRequest": "Demande de réservation",
+    "reserveYourStay": "Réservez votre séjour",
+    "bookingModalTitle": "Envoyer votre demande",
+    "messageOptional": "Message (optionnel)",
+    "confirmTitle": "Confirmez votre demande de réservation",
+    "confirmLead": "Veuillez vérifier les détails avant d'envoyer votre demande.",
+    "confirmAndSend": "Confirmer et envoyer",
+    "sending": "Envoi de la demande…",
+    "errors": {
+      "chooseDates": "Veuillez choisir les dates d'arrivée et de départ.",
+      "checkOutAfterCheckIn": "La date de départ doit être après la date d'arrivée.",
+      "validGuests": "Veuillez indiquer un nombre de personnes valide.",
+      "datesUnavailable": "Ces dates ne sont pas disponibles ; veuillez choisir une autre période."
+    }
+  },
+  "propertyCalendar": {
+    "booked": "Réservé",
+    "occupied": "Occupé",
+    "available": "Disponible",
+    "status": "Statut",
+    "guest": "Voyageur",
+    "checkIn": "Arrivée",
+    "checkOut": "Départ",
+    "close": "Fermer"
+  },
+  "footer": {
+    "copy": "© {{year}} Résidence Amira. Tous droits réservés."
+  }
+}

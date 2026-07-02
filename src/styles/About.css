@@ -1,0 +1,13 @@
+@import './variables.css';
+
+.about-page,
+.contact-page {
+  display: grid;
+  place-items: start;
+}
+
+.page-section {
+  max-width: 760px;
+  display: grid;
+  gap: var(--spacing-md);
+}
