@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { ConfigError } from './components/ConfigError'
 import { Home } from './pages/Home'
-import { Properties } from './pages/Properties'
 import { PropertyDetail } from './pages/PropertyDetail'
 import { About } from './pages/About'
 import { Contact } from './pages/Contact'
@@ -20,7 +19,6 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/properties" element={<Properties />} />
           <Route path="/properties/:id" element={<PropertyDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

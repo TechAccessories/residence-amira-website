@@ -12,7 +12,7 @@ export function Navbar() {
       </NavLink>
 
       <nav className="site-nav" aria-label="Primary navigation">
-        <NavLink to="/properties">{t('nav.properties')}</NavLink>
+        <NavLink to="/#properties">{t('nav.properties')}</NavLink>
         <NavLink to="/about">{t('nav.about')}</NavLink>
         <NavLink to="/contact">{t('nav.contact')}</NavLink>
 

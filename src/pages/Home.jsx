@@ -6,11 +6,11 @@ import { PropertyCard } from '../components/PropertyCard'
 import { LoadingSpinner } from '../components/LoadingSpinner'
 import { ErrorMessage } from '../components/ErrorMessage'
 import '../styles/Home.css'
+import '../styles/Properties.css'
 
 export function Home() {
   const { t } = useTranslation()
   const { properties, loading, error } = useProperties()
-  const featured = properties.slice(0, 4)
 
   return (
     <div className="home-page">
@@ -20,9 +20,6 @@ export function Home() {
           <h1>{t('home.title')}</h1>
           <p className="hero-text">{t('home.lead')}</p>
           <div className="hero-actions">
-            <Link className="button primary" to="/properties">
-              {t('home.viewProperties')}
-            </Link>
             <Link className="button secondary" to="/about">
               {t('home.learnMore')}
             </Link>
@@ -30,22 +27,23 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section-block">
+      <section id="properties" className="section-block">
         <div className="section-heading">
           <p className="eyebrow">{t('home.featuredEyebrow')}</p>
-          <h2>{t('home.featuredTitle')}</h2>
+          <h2>{t('home.ourProperties')}</h2>
+          <p className="page-intro">{t('properties.lead')}</p>
         </div>
 
         {loading && <LoadingSpinner />}
         {error && <ErrorMessage message={error} />}
 
-        {!loading && !error && featured.length === 0 && (
-          <p className="empty-state">{t('home.emptyFeatured')}</p>
+        {!loading && !error && properties.length === 0 && (
+          <p className="empty-state">{t('properties.empty')}</p>
         )}
 
-        {!loading && !error && featured.length > 0 && (
+        {!loading && !error && properties.length > 0 && (
           <div className="property-grid">
-            {featured.map((property) => (
+            {properties.map((property) => (
               <PropertyCard key={property.id} property={property} />
             ))}
           </div>
