@@ -1,14 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import AnimatedModal from '../components/AnimatedModal'
 import PropertyCalendar from '../components/PropertyCalendar'
-import PropertyImageCarousel from '../components/PropertyImageCarousel'
 import { supabase } from '../lib/supabase'
 import { fetchPublicBookingRanges, rangesOverlap } from '../lib/bookingAvailability'
 import '../styles/PropertyDetail.css'
-
-const placeholderImage = 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80'
 
 const AMENITY_MAP = {
   wifi: { label: 'WiFi', icon: '📶' },
@@ -59,6 +56,7 @@ export function PropertyDetail() {
   const [showForm, setShowForm] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [showLightbox, setShowLightbox] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0)
   const [form, setForm] = useState({
     customer_name: '',
@@ -134,6 +132,10 @@ export function PropertyDetail() {
 
     return []
   }, [property])
+
+  useEffect(() => {
+    setCurrentImageIndex(0)
+  }, [imageList.length])
 
   const displayTitle = property?.publication_title || property?.name || property?.title || 'Property'
   const nights = calculateNights(form.check_in, form.check_out)
@@ -277,64 +279,98 @@ export function PropertyDetail() {
 
   return (
     <div className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-        <section className="space-y-6">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mx-auto max-w-6xl">
+        <Link
+          to="/"
+          className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition-colors hover:text-emerald-700"
+        >
+          ← {t('propertyDetail.backToProperties') || 'Back to properties'}
+        </Link>
+
+        <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+          {/* ---------- Gallery: big main image + thumbnail strip ---------- */}
+          <section className="space-y-3">
+            <div
+              className="aspect-[4/3] sm:aspect-[16/9] max-h-[520px] w-full cursor-pointer overflow-hidden rounded-2xl bg-slate-100"
+              onClick={() => {
+                setLightboxImageIndex(currentImageIndex)
+                setShowLightbox(true)
+              }}
+            >
+              {imageList.length > 0 ? (
+                <img
+                  src={imageList[currentImageIndex]}
+                  alt={displayTitle}
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-sky-100 to-emerald-100 text-sm font-semibold text-slate-600">
+                  {t('common.noImage')}
+                </div>
+              )}
+            </div>
+
+            {imageList.length > 1 && (
+              <div className="flex gap-3 overflow-x-auto pb-1">
+                {imageList.map((image, index) => (
+                  <button
+                    key={`${image}-${index}`}
+                    type="button"
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`h-20 w-24 flex-shrink-0 overflow-hidden rounded-xl transition-all duration-200 hover:scale-105 ${
+                      index === currentImageIndex ? 'ring-2 ring-emerald-500' : 'ring-1 ring-slate-200'
+                    }`}
+                  >
+                    <img src={image} alt={`${displayTitle} ${index + 1}`} className="h-full w-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </section>
+
+          {/* ---------- Title row ---------- */}
+          <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">{t('propertyDetail.eyebrow')}</p>
               <h1 className="mt-3 text-3xl font-semibold text-slate-900">{displayTitle}</h1>
-              <p className="mt-2 text-sm text-slate-500">{property?.location}</p>
+              <p className="mt-2 flex items-center gap-1.5 text-sm text-slate-500">
+                <span>📍</span> {property?.location}
+              </p>
             </div>
 
             <button
               type="button"
               onClick={() => setShowForm(true)}
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-emerald-700"
+              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-colors duration-200 hover:bg-emerald-700 lg:hidden"
             >
               {t('propertyDetail.requestBooking')}
             </button>
           </div>
 
-          <div>
-            <PropertyImageCarousel
-              images={imageList}
-              title={displayTitle}
-              className="aspect-[4/3] sm:aspect-[16/9] max-h-[520px] w-full rounded-2xl"
-              autoAdvance={false}
-              onClick={() => {
-                setLightboxImageIndex(0)
-                setShowLightbox(true)
-              }}
-            />
-          </div>
-        </section>
-
-        <div className="mt-8 grid gap-4 xl:grid-cols-1">
-          <div className="space-y-8">
-            <div className="grid gap-4 sm:grid-cols-4">
-              <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-sm text-slate-500">{t('propertyDetail.price')}</p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">
-                  {property?.price_per_night ? `${Number(property.price_per_night).toFixed(2)} TND / night` : t('propertyCard.priceUnavailable')}
-                </p>
-              </div>
-              <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-sm text-slate-500">{t('propertyDetail.beds')}</p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">{property?.num_beds ?? '—'}</p>
-              </div>
-              {property?.max_guests != null && (
-                <div className="rounded-2xl bg-slate-50 p-4">
-                  <p className="text-sm text-slate-500">{t('propertyDetail.maxGuests')}</p>
-                  <p className="mt-2 text-xl font-semibold text-slate-900">{property.max_guests}</p>
+          {/* ---------- Content + sticky booking sidebar ---------- */}
+          <div className="mt-8 grid gap-8 lg:grid-cols-3">
+            <div className="space-y-8 lg:col-span-2">
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="rounded-2xl bg-slate-50 p-4 text-center">
+                  <p className="text-2xl">🛏️</p>
+                  <p className="mt-1 text-sm text-slate-500">{t('propertyDetail.beds')}</p>
+                  <p className="text-lg font-semibold text-slate-900">{property?.num_beds ?? '—'}</p>
                 </div>
-              )}
-              <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-sm text-slate-500">{t('propertyDetail.availability')}</p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">{t('propertyDetail.checkCalendar')}</p>
+                {property?.max_guests != null && (
+                  <div className="rounded-2xl bg-slate-50 p-4 text-center">
+                    <p className="text-2xl">👥</p>
+                    <p className="mt-1 text-sm text-slate-500">{t('propertyDetail.maxGuests')}</p>
+                    <p className="text-lg font-semibold text-slate-900">{property.max_guests}</p>
+                  </div>
+                )}
+                <div className="rounded-2xl bg-slate-50 p-4 text-center">
+                  <p className="text-2xl">📅</p>
+                  <p className="mt-1 text-sm text-slate-500">{t('propertyDetail.availability')}</p>
+                  <p className="text-sm font-semibold text-slate-900">{t('propertyDetail.checkCalendar')}</p>
+                </div>
               </div>
-            </div>
 
-            <div className="space-y-6">
               <div>
                 <h2 className="text-xl font-semibold text-slate-900">{t('propertyDetail.descriptionTitle')}</h2>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{property?.description}</p>
@@ -348,7 +384,10 @@ export function PropertyDetail() {
                       const amenity = AMENITY_MAP[key]
                       if (!amenity) return null
                       return (
-                        <span key={key} className="inline-flex items-center gap-1.5 rounded-2xl bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700">
+                        <span
+                          key={key}
+                          className="inline-flex items-center gap-1.5 rounded-2xl bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700"
+                        >
                           <span>{amenity.icon}</span>
                           {amenity.label}
                         </span>
@@ -361,7 +400,7 @@ export function PropertyDetail() {
               {property?.house_rules?.trim() && (
                 <div>
                   <h2 className="text-xl font-semibold text-slate-900">{t('propertyDetail.houseRules')}</h2>
-                  <p className="mt-3 text-sm leading-7 text-slate-600 whitespace-pre-line">{property.house_rules}</p>
+                  <p className="mt-3 whitespace-pre-line text-sm leading-7 text-slate-600">{property.house_rules}</p>
                 </div>
               )}
 
@@ -393,15 +432,36 @@ export function PropertyDetail() {
                   </div>
                 )}
               </div>
+
+              <div>
+                <h2 className="text-xl font-semibold text-slate-900">{t('propertyDetail.availability')}</h2>
+                <PropertyCalendar bookings={bookings} isOwner={false} />
+              </div>
             </div>
+
+            {/* ---------- Sticky booking sidebar (desktop) ---------- */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-6 rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <p className="text-sm text-slate-500">{t('propertyDetail.price')}</p>
+                <p className="mt-1 text-2xl font-semibold text-slate-900">
+                  {property?.price_per_night
+                    ? `${Number(property.price_per_night).toFixed(2)} TND`
+                    : t('propertyCard.priceUnavailable')}
+                  {property?.price_per_night && <span className="text-sm font-normal text-slate-500"> / night</span>}
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() => setShowForm(true)}
+                  className="mt-5 w-full rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition-colors duration-200 hover:bg-emerald-700"
+                >
+                  {t('propertyDetail.requestBooking')}
+                </button>
+
+                <p className="mt-3 text-center text-xs text-slate-400">{t('propertyDetail.checkCalendar')}</p>
+              </div>
+            </aside>
           </div>
-
-          
-        </div>
-
-        <div className="mt-10">
-          <h2 className="text-xl font-semibold text-slate-900">Availability</h2>
-          <PropertyCalendar bookings={bookings} isOwner={false} />
         </div>
       </div>
 
@@ -486,16 +546,18 @@ export function PropertyDetail() {
           {nights > 0 && (
             <div className="mt-4 rounded-2xl bg-emerald-50 p-4">
               <p className="text-sm font-semibold text-emerald-800">
-                Total: {totalPrice.toFixed(2)} TND {nights === 1 ? 'for 1 night' : `for ${nights} nights`}
+                {t('propertyDetail.totalLabel') || 'Total'}: {totalPrice.toFixed(2)} TND{' '}
+                {nights === 1 ? `for 1 ${t('propertyDetail.nightsShort') || 'night'}` : `for ${nights} ${t('propertyDetail.nightsShortPlural') || 'nights'}`}
               </p>
               <p className="mt-1 text-xs text-emerald-700">
-                {Number(property?.price_per_night || 0).toFixed(2)} TND × {nights} {nights === 1 ? 'night' : 'nights'}
+                {Number(property?.price_per_night || 0).toFixed(2)} TND × {nights}{' '}
+                {nights === 1 ? t('propertyDetail.nightsShort') || 'night' : t('propertyDetail.nightsShortPlural') || 'nights'}
               </p>
             </div>
           )}
 
           <div className="mt-4">
-            <label className="mb-1 block text-sm font-medium text-slate-700">Message (optional)</label>
+            <label className="mb-1 block text-sm font-medium text-slate-700">{t('propertyDetail.messageOptional')}</label>
             <textarea
               name="note"
               value={form.note}
@@ -531,10 +593,10 @@ export function PropertyDetail() {
         <p className="mt-2 text-sm text-slate-600">{t('propertyDetail.confirmLead')}</p>
 
         <div className="mt-4 space-y-3 rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
-          <div className="flex justify-between"><span className="text-slate-500">Check-in</span><span className="font-medium">{form.check_in}</span></div>
-          <div className="flex justify-between"><span className="text-slate-500">Check-out</span><span className="font-medium">{form.check_out}</span></div>
-          <div className="flex justify-between"><span className="text-slate-500">Guests</span><span className="font-medium">{form.guest_count}</span></div>
-          <div className="flex justify-between border-t border-slate-200 pt-2"><span className="font-semibold text-slate-900">Total</span><span className="font-semibold text-emerald-700">{totalPrice.toFixed(2)} TND</span></div>
+          <div className="flex justify-between"><span className="text-slate-500">{t('bookingForm.checkIn')}</span><span className="font-medium">{form.check_in}</span></div>
+          <div className="flex justify-between"><span className="text-slate-500">{t('bookingForm.checkOut')}</span><span className="font-medium">{form.check_out}</span></div>
+          <div className="flex justify-between"><span className="text-slate-500">{t('propertyDetail.guestCount')}</span><span className="font-medium">{form.guest_count}</span></div>
+          <div className="flex justify-between border-t border-slate-200 pt-2"><span className="font-semibold text-slate-900">{t('propertyDetail.totalLabel') || 'Total'}</span><span className="font-semibold text-emerald-700">{totalPrice.toFixed(2)} TND</span></div>
         </div>
 
         {error && <p className="mt-3 text-sm text-red-600">{error}</p>}

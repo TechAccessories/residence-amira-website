@@ -13,7 +13,6 @@ export function Navbar() {
 
       <nav className="site-nav" aria-label="Primary navigation">
         <NavLink to="/#properties">{t('nav.properties')}</NavLink>
-        <NavLink to="/about">{t('nav.about')}</NavLink>
         <NavLink to="/contact">{t('nav.contact')}</NavLink>
 
         <div className="lang-toggle" style={{ display: 'flex', gap: 8 }}>

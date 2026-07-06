@@ -20,7 +20,28 @@
     "learnMore": "Learn more",
     "featuredEyebrow": "Featured homes",
     "featuredTitle": "Some of our most loved properties",
-    "emptyFeatured": "No featured properties are available right now."
+    "ourProperties": "Our properties",
+    "emptyFeatured": "No featured properties are available right now.",
+    "features": {
+      "comfort": {
+        "title": "Comfortable, modern interiors",
+        "text": "Every home is fitted with quality furnishings and thoughtful touches so you feel at ease from the moment you arrive."
+      },
+      "location": {
+        "title": "Great locations",
+        "text": "Stay close to what matters — city centers, transport, and local life — without sacrificing a quiet place to rest."
+      },
+      "service": {
+        "title": "Dependable hospitality",
+        "text": "Our team is responsive and easy to reach, whether you're planning a stay or already checked in."
+      }
+    },
+    "galleryEyebrow": "A feel for the place",
+    "galleryTitle": "Life at Résidence Amira",
+    "ctaEyebrow": "Questions?",
+    "ctaTitle": "Let's plan your stay",
+    "ctaText": "Reach out and we'll help you find the right home for your dates and group size.",
+    "ctaButton": "Contact us"
   },
   "properties": {
     "eyebrow": "Stay options",
@@ -41,7 +62,12 @@
     "name": "Name",
     "email": "Email",
     "message": "Message",
-    "sendMessage": "Send message"
+    "sendMessage": "Send message",
+    "sending": "Sending…",
+    "success": "Thanks! Your message has been sent — we'll get back to you shortly.",
+    "errors": {
+      "submitError": "Unable to send your message right now. Please try again later."
+    }
   },
   "propertyCard": {
     "viewDetails": "View Details",
@@ -68,7 +94,6 @@
   "propertyDetail": {
     "eyebrow": "Vacation rental",
     "price": "Price",
-    "eyebrow": "Vacation rental",
     "bookingRequest": "Booking request",
     "bookingModalTitle": "Send your request",
     "guestCount": "Guests",
@@ -83,14 +108,16 @@
     "checkCalendar": "Check the calendar below",
     "submitted": "Your booking request has been sent successfully.",
     "submitError": "Unable to submit your booking request right now.",
-    "bookingRequest": "Booking request",
     "reserveYourStay": "Reserve your stay",
-    "bookingModalTitle": "Send your request",
     "messageOptional": "Message (optional)",
     "confirmTitle": "Confirm your booking request",
     "confirmLead": "Please review the booking details before sending your request.",
     "confirmAndSend": "Confirm & Send Request",
     "sending": "Sending request…",
+    "backToProperties": "Back to properties",
+    "nightsShort": "night",
+    "nightsShortPlural": "nights",
+    "totalLabel": "Total",
     "errors": {
       "chooseDates": "Please choose both check-in and check-out dates.",
       "checkOutAfterCheckIn": "Check-out must be after check-in.",

@@ -20,7 +20,28 @@
     "learnMore": "En savoir plus",
     "featuredEyebrow": "Maisons en vedette",
     "featuredTitle": "Quelques-unes de nos propriétés les plus appréciées",
-    "emptyFeatured": "Aucune propriété en vedette n'est disponible pour le moment."
+    "ourProperties": "Nos propriétés",
+    "emptyFeatured": "Aucune propriété en vedette n'est disponible pour le moment.",
+    "features": {
+      "comfort": {
+        "title": "Intérieurs modernes et confortables",
+        "text": "Chaque logement est aménagé avec soin afin que vous vous sentiez chez vous dès votre arrivée."
+      },
+      "location": {
+        "title": "Des emplacements de choix",
+        "text": "Restez proche de l'essentiel — centre-ville, transports, vie locale — sans renoncer au calme."
+      },
+      "service": {
+        "title": "Une hospitalité fiable",
+        "text": "Notre équipe est réactive et facile à joindre, que vous prépariez votre séjour ou soyez déjà sur place."
+      }
+    },
+    "galleryEyebrow": "Un aperçu des lieux",
+    "galleryTitle": "La vie à la Résidence Amira",
+    "ctaEyebrow": "Des questions ?",
+    "ctaTitle": "Planifions votre séjour",
+    "ctaText": "Contactez-nous et nous vous aiderons à trouver le logement adapté à vos dates et à votre groupe.",
+    "ctaButton": "Nous contacter"
   },
   "properties": {
     "eyebrow": "Options de séjour",
@@ -41,7 +62,12 @@
     "name": "Nom",
     "email": "Email",
     "message": "Message",
-    "sendMessage": "Envoyer le message"
+    "sendMessage": "Envoyer le message",
+    "sending": "Envoi…",
+    "success": "Merci ! Votre message a été envoyé — nous vous répondrons rapidement.",
+    "errors": {
+      "submitError": "Impossible d'envoyer votre message pour le moment. Veuillez réessayer plus tard."
+    }
   },
   "propertyCard": {
     "viewDetails": "Voir les détails",
@@ -66,9 +92,8 @@
     "submitError": "Impossible d'envoyer la demande de réservation pour le moment."
   },
   "propertyDetail": {
-    "eyebrow": "Location",
-    "price": "Prix",
     "eyebrow": "Location de vacances",
+    "price": "Prix",
     "bookingRequest": "Demande de réservation",
     "bookingModalTitle": "Envoyez votre demande",
     "guestCount": "Invités",
@@ -83,14 +108,16 @@
     "checkCalendar": "Consultez le calendrier ci-dessous",
     "submitted": "Votre demande de réservation a été envoyée avec succès.",
     "submitError": "Impossible d'envoyer votre demande de réservation pour le moment.",
-    "bookingRequest": "Demande de réservation",
     "reserveYourStay": "Réservez votre séjour",
-    "bookingModalTitle": "Envoyer votre demande",
     "messageOptional": "Message (optionnel)",
     "confirmTitle": "Confirmez votre demande de réservation",
     "confirmLead": "Veuillez vérifier les détails avant d'envoyer votre demande.",
     "confirmAndSend": "Confirmer et envoyer",
     "sending": "Envoi de la demande…",
+    "backToProperties": "Retour aux propriétés",
+    "nightsShort": "nuit",
+    "nightsShortPlural": "nuits",
+    "totalLabel": "Total",
     "errors": {
       "chooseDates": "Veuillez choisir les dates d'arrivée et de départ.",
       "checkOutAfterCheckIn": "La date de départ doit être après la date d'arrivée.",

@@ -3,7 +3,7 @@ import { Layout } from './components/Layout'
 import { ConfigError } from './components/ConfigError'
 import { Home } from './pages/Home'
 import { PropertyDetail } from './pages/PropertyDetail'
-import { About } from './pages/About'
+
 import { Contact } from './pages/Contact'
 import './App.css'
 
@@ -20,7 +20,6 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/properties/:id" element={<PropertyDetail />} />
-          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Route>
       </Routes>
