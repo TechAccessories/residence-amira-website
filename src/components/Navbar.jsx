@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import logo from '../assets/logo.png'
 import '../styles/Navbar.css'
 
 export function Navbar() {
@@ -8,6 +9,7 @@ export function Navbar() {
   return (
     <header className="site-header">
       <NavLink className="brand" to="/">
+        <img src={logo} alt="Résidence Amira" className="brand-logo" />
         Résidence Amira
       </NavLink>
 
