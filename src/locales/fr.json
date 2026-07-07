@@ -3,14 +3,24 @@
     "home": "Accueil",
     "properties": "Locations",
     "about": "À propos",
-    "contact": "Contact"
+    "contact": "Contact",
+    "primaryNavigation": "Navigation principale"
   },
   "common": {
     "loading": "Chargement…",
     "close": "Fermer",
     "cancel": "Annuler",
     "viewOnGoogleMaps": "Voir sur Google Maps",
-    "noImage": "Aucune image disponible"
+    "errors": {
+      "loadProperty": "Impossible de charger cette propriété pour le moment.",
+      "loadProperties": "Impossible de charger les propriétés pour le moment."
+    },
+    "noImage": "Aucune image disponible",
+    "previousImage": "Image précédente",
+    "nextImage": "Image suivante",
+    "goToImage": "Aller à l'image {{index}}",
+    "propertyImages": "Images de la propriété",
+    "imagePreview": "Aperçu de {{title}} {{index}}"
   },
   "home": {
     "eyebrow": "Séjours familiaux au cœur de la ville",
@@ -58,6 +68,7 @@
   "contact": {
     "eyebrow": "Contact",
     "title": "Contactez-nous",
+    "country": "Tunisie",
     "lead": "Des questions sur la disponibilité ou un séjour ? Donnez-nous quelques informations et nous vous répondrons rapidement.",
     "name": "Nom",
     "email": "Email",
@@ -94,6 +105,13 @@
   "propertyDetail": {
     "eyebrow": "Location de vacances",
     "price": "Prix",
+    "untitled": "Propriété",
+    "mapTitle": "Emplacement de la propriété",
+    "perNightSuffix": "/ nuit",
+    "totalSummary": "Total : {{total}} TND pour {{count}} nuit",
+    "totalSummary_plural": "Total : {{total}} TND pour {{count}} nuits",
+    "priceTimesNights": "{{price}} TND × {{count}} nuit",
+    "priceTimesNights_plural": "{{price}} TND × {{count}} nuits",
     "bookingRequest": "Demande de réservation",
     "bookingModalTitle": "Envoyez votre demande",
     "guestCount": "Invités",
@@ -137,5 +155,9 @@
   },
   "footer": {
     "copy": "© {{year}} Résidence Amira. Tous droits réservés."
+  },
+  "configError": {
+    "title": "Configuration requise",
+    "message": "La connexion Supabase n'est pas encore configurée. Veuillez vérifier les valeurs VITE_SUPABASE_URL et VITE_SUPABASE_ANON_KEY dans votre fichier d'environnement."
   }
 }

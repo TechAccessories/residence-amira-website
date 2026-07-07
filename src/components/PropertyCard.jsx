@@ -13,11 +13,11 @@ export function PropertyCard({ property }) {
       ? [property.image_url]
       : []
 
-  const title = property?.publication_title || property?.name || property?.title || 'Untitled Property'
   const { t } = useTranslation()
+  const title = property?.publication_title || property?.name || property?.title || t('propertyCard.untitled')
 
   const priceLabel = property?.price_per_night != null
-    ? `${Number(property.price_per_night).toFixed(2)} TND / night`
+    ? t('propertyCard.perNight', { price: Number(property.price_per_night).toFixed(2) })
     : t('propertyCard.priceUnavailable')
 
   return (

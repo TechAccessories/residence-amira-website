@@ -15,13 +15,16 @@ i18n
     },
     fallbackLng: 'fr',
     lng: 'fr', // default language on first visit
+    supportedLngs: ['fr', 'en'],
+    nonExplicitSupportedLngs: true,
     interpolation: {
       escapeValue: false,
     },
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['localStorage'],
       caches: ['localStorage'],
       lookupLocalStorage: 'residenceAmiraLanguage',
+      checkWhitelist: true,
     },
   })
 

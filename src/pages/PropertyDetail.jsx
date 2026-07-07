@@ -8,16 +8,16 @@ import { fetchPublicBookingRanges, rangesOverlap } from '../lib/bookingAvailabil
 import '../styles/PropertyDetail.css'
 
 const AMENITY_MAP = {
-  wifi: { label: 'WiFi', icon: '📶' },
-  pool: { label: 'Pool', icon: '🏊' },
-  ac: { label: 'AC', icon: '❄️' },
-  parking: { label: 'Parking', icon: '🚗' },
-  kitchen: { label: 'Kitchen', icon: '🍳' },
-  washer: { label: 'Washer', icon: '🫧' },
-  tv: { label: 'TV', icon: '📺' },
-  gym: { label: 'Gym', icon: '🏋️' },
-  balcony: { label: 'Balcony', icon: '🌅' },
-  pets: { label: 'Pets allowed', icon: '🐾' },
+  wifi: { icon: '📶' },
+  pool: { icon: '🏊' },
+  ac: { icon: '❄️' },
+  parking: { icon: '🚗' },
+  kitchen: { icon: '🍳' },
+  washer: { icon: '🫧' },
+  tv: { icon: '📺' },
+  gym: { icon: '🏋️' },
+  balcony: { icon: '🌅' },
+  pets: { icon: '🐾' },
 }
 
 function getTodayInputValue() {
@@ -103,7 +103,7 @@ export function PropertyDetail() {
         }
       } catch (err) {
         if (!ignore) {
-          setError(err.message || 'Unable to load this property right now.')
+          setError(err.message || t('common.errors.loadProperty'))
         }
       } finally {
         if (!ignore) {
@@ -137,7 +137,7 @@ export function PropertyDetail() {
     setCurrentImageIndex(0)
   }, [imageList.length])
 
-  const displayTitle = property?.publication_title || property?.name || property?.title || 'Property'
+  const displayTitle = property?.publication_title || property?.name || property?.title || t('propertyDetail.untitled')
   const nights = calculateNights(form.check_in, form.check_out)
   const totalPrice = nights * Number(property?.price_per_night || 0)
 
@@ -284,7 +284,7 @@ export function PropertyDetail() {
           to="/"
           className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition-colors hover:text-emerald-700"
         >
-          ← {t('propertyDetail.backToProperties') || 'Back to properties'}
+          ← {t('propertyDetail.backToProperties')}
         </Link>
 
         <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
@@ -389,7 +389,7 @@ export function PropertyDetail() {
                           className="inline-flex items-center gap-1.5 rounded-2xl bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700"
                         >
                           <span>{amenity.icon}</span>
-                          {amenity.label}
+                          {t(`amenities.${key}`)}
                         </span>
                       )
                     })}
@@ -410,7 +410,7 @@ export function PropertyDetail() {
                 {property?.location?.trim() && (
                   <div className="mt-4 overflow-hidden rounded-3xl bg-slate-100">
                     <iframe
-                      title="Property location"
+                      title={t('propertyDetail.mapTitle')}
                       width="100%"
                       height="280"
                       style={{ border: 0, display: 'block' }}
@@ -447,7 +447,7 @@ export function PropertyDetail() {
                   {property?.price_per_night
                     ? `${Number(property.price_per_night).toFixed(2)} TND`
                     : t('propertyCard.priceUnavailable')}
-                  {property?.price_per_night && <span className="text-sm font-normal text-slate-500"> / night</span>}
+                  {property?.price_per_night && <span className="text-sm font-normal text-slate-500">{t('propertyDetail.perNightSuffix')}</span>}
                 </p>
 
                 <button
@@ -530,7 +530,7 @@ export function PropertyDetail() {
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700">{t('propertyDetail.guestCount') || 'Guests'}</label>
+              <label className="mb-1 block text-sm font-medium text-slate-700">{t('propertyDetail.guestCount')}</label>
               <input
                 type="number"
                 name="guest_count"
@@ -546,12 +546,13 @@ export function PropertyDetail() {
           {nights > 0 && (
             <div className="mt-4 rounded-2xl bg-emerald-50 p-4">
               <p className="text-sm font-semibold text-emerald-800">
-                {t('propertyDetail.totalLabel') || 'Total'}: {totalPrice.toFixed(2)} TND{' '}
-                {nights === 1 ? `for 1 ${t('propertyDetail.nightsShort') || 'night'}` : `for ${nights} ${t('propertyDetail.nightsShortPlural') || 'nights'}`}
+                {t('propertyDetail.totalSummary', { total: totalPrice.toFixed(2), count: nights })}
               </p>
               <p className="mt-1 text-xs text-emerald-700">
-                {Number(property?.price_per_night || 0).toFixed(2)} TND × {nights}{' '}
-                {nights === 1 ? t('propertyDetail.nightsShort') || 'night' : t('propertyDetail.nightsShortPlural') || 'nights'}
+                {t('propertyDetail.priceTimesNights', {
+                  price: Number(property?.price_per_night || 0).toFixed(2),
+                  count: nights,
+                })}
               </p>
             </div>
           )}
@@ -596,7 +597,7 @@ export function PropertyDetail() {
           <div className="flex justify-between"><span className="text-slate-500">{t('bookingForm.checkIn')}</span><span className="font-medium">{form.check_in}</span></div>
           <div className="flex justify-between"><span className="text-slate-500">{t('bookingForm.checkOut')}</span><span className="font-medium">{form.check_out}</span></div>
           <div className="flex justify-between"><span className="text-slate-500">{t('propertyDetail.guestCount')}</span><span className="font-medium">{form.guest_count}</span></div>
-          <div className="flex justify-between border-t border-slate-200 pt-2"><span className="font-semibold text-slate-900">{t('propertyDetail.totalLabel') || 'Total'}</span><span className="font-semibold text-emerald-700">{totalPrice.toFixed(2)} TND</span></div>
+          <div className="flex justify-between border-t border-slate-200 pt-2"><span className="font-semibold text-slate-900">{t('propertyDetail.totalLabel')}</span><span className="font-semibold text-emerald-700">{totalPrice.toFixed(2)} TND</span></div>
         </div>
 
         {error && <p className="mt-3 text-sm text-red-600">{error}</p>}

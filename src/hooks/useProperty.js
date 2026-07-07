@@ -1,7 +1,9 @@
 // Purpose: Fetch a single property, its images, and booking history for availability.
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export function useProperty(id) {
+  const { t } = useTranslation()
   const [property, setProperty] = useState(null)
   const [bookings, setBookings] = useState([])
   const [loading, setLoading] = useState(true)
@@ -48,7 +50,7 @@ export function useProperty(id) {
         }
       } catch (err) {
         if (!ignore) {
-          setError(err.message || 'Unable to load this property right now.')
+          setError(err.message || t('common.errors.loadProperty'))
         }
       } finally {
         if (!ignore) {

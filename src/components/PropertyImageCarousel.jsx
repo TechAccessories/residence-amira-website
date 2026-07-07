@@ -96,7 +96,7 @@ function PropertyImageCarousel({
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent opacity-80" />
           <button
             type="button"
-            aria-label="Previous image"
+            aria-label={t('common.previousImage')}
             onClick={goToPrevious}
             className={`absolute left-3 top-1/2 z-10 flex h-9 w-9 min-h-0 -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/70 text-white shadow-lg backdrop-blur-sm transition-all duration-200 ${
               isHovered ? 'translate-x-0 opacity-100' : '-translate-x-1 opacity-0'
@@ -106,7 +106,7 @@ function PropertyImageCarousel({
           </button>
           <button
             type="button"
-            aria-label="Next image"
+            aria-label={t('common.nextImage')}
             onClick={goToNext}
             className={`absolute right-3 top-1/2 z-10 flex h-9 w-9 min-h-0 -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/70 text-white shadow-lg backdrop-blur-sm transition-all duration-200 ${
               isHovered ? 'translate-x-0 opacity-100' : 'translate-x-1 opacity-0'
@@ -123,7 +123,7 @@ function PropertyImageCarousel({
               <button
                 key={index}
                 type="button"
-                aria-label={`Go to image ${index + 1}`}
+                aria-label={t('common.goToImage', { index: index + 1 })}
                 onClick={(event) => goToSlide(event, index)}
                 className={`no-touch-target h-2.5 w-2.5 p-0 rounded-full transition-all duration-200 ${
                 index === currentIndex

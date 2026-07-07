@@ -3,18 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { isDateBooked, toDateOnly } from '../lib/bookingAvailability'
 import AnimatedModal from './AnimatedModal'
 
-const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-const monthNames = [
-  'January','February','March','April','May','June',
-  'July','August','September','October','November','December',
-]
-
 function isSameDay(a, b) {
   return a.toDateString() === b.toDateString()
 }
 
-function formatDateLabel(date) {
-  return date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+function formatDateLabel(date, locale) {
+  return date.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 // PropertyCalendar — per-property availability calendar.
@@ -23,10 +17,20 @@ function formatDateLabel(date) {
 // Mobile/touch: hovering isn't possible, so tapping a booked day opens a
 // small modal with the same guest info instead.
 function PropertyCalendar({ bookings = [], isOwner = false }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const today = new Date()
   const [currentMonth, setCurrentMonth] = useState(new Date(today.getFullYear(), today.getMonth(), 1))
   const [selectedDay, setSelectedDay] = useState(null) // { date, booking }
+
+  const weekdayNames = useMemo(() => {
+    const formatter = new Intl.DateTimeFormat(i18n.language, { weekday: 'short' })
+    const referenceSunday = new Date(2024, 0, 7)
+    return Array.from({ length: 7 }, (_, index) => formatter.format(new Date(referenceSunday.getFullYear(), referenceSunday.getMonth(), referenceSunday.getDate() + index)))
+  }, [i18n.language])
+
+  const monthYearLabel = useMemo(() => {
+    return new Intl.DateTimeFormat(i18n.language, { month: 'long', year: 'numeric' }).format(currentMonth)
+  }, [currentMonth, i18n.language])
 
   const calendarDays = useMemo(() => {
     const year = currentMonth.getFullYear()
@@ -59,14 +63,14 @@ function PropertyCalendar({ bookings = [], isOwner = false }) {
         <button type="button" onClick={() => moveMonth(-1)}
           className="rounded-md border border-slate-300 px-2 py-1 text-sm text-slate-700 hover:bg-slate-50">←</button>
         <h4 className="text-sm font-semibold text-slate-800">
-          {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+          {monthYearLabel}
         </h4>
         <button type="button" onClick={() => moveMonth(1)}
           className="rounded-md border border-slate-300 px-2 py-1 text-sm text-slate-700 hover:bg-slate-50">→</button>
       </div>
 
       <div className="mt-3 grid grid-cols-7 gap-1 text-center text-xs text-slate-500">
-        {dayNames.map((day) => <div key={day} className="py-1 font-medium">{day}</div>)}
+        {weekdayNames.map((day) => <div key={day} className="py-1 font-medium">{day}</div>)}
       </div>
 
       <div className="grid grid-cols-7 gap-1">
@@ -134,7 +138,7 @@ function PropertyCalendar({ bookings = [], isOwner = false }) {
         {selectedDay && (
           <>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-600">{t('propertyCalendar.booked')}</p>
-            <h4 className="mt-1 text-lg font-black text-slate-900">{formatDateLabel(selectedDay.date)}</h4>
+            <h4 className="mt-1 text-lg font-black text-slate-900">{formatDateLabel(selectedDay.date, i18n.language)}</h4>
             <div className="mt-4 space-y-2 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
               <div className="flex justify-between">
                 <span className="text-slate-500">{isOwner ? t('propertyCalendar.guest') : t('propertyCalendar.status')}</span>

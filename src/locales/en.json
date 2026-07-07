@@ -3,14 +3,24 @@
     "home": "Home",
     "properties": "Properties",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "primaryNavigation": "Primary navigation"
   },
   "common": {
     "loading": "Loading…",
     "close": "Close",
     "cancel": "Cancel",
     "viewOnGoogleMaps": "View on Google Maps",
-    "noImage": "No Image Available"
+    "errors": {
+      "loadProperty": "Unable to load this property right now.",
+      "loadProperties": "Unable to load properties right now."
+    },
+    "noImage": "No Image Available",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "goToImage": "Go to image {{index}}",
+    "propertyImages": "Property images",
+    "imagePreview": "{{title}} preview {{index}}"
   },
   "home": {
     "eyebrow": "Family stays in the heart of the city",
@@ -58,6 +68,7 @@
   "contact": {
     "eyebrow": "Contact",
     "title": "Get in touch",
+    "country": "Tunisia",
     "lead": "Have questions about availability or a stay? Share a few details and we will be in touch shortly.",
     "name": "Name",
     "email": "Email",
@@ -94,6 +105,13 @@
   "propertyDetail": {
     "eyebrow": "Vacation rental",
     "price": "Price",
+    "untitled": "Property",
+    "mapTitle": "Property location",
+    "perNightSuffix": "/ night",
+    "totalSummary": "Total: {{total}} TND for {{count}} night",
+    "totalSummary_plural": "Total: {{total}} TND for {{count}} nights",
+    "priceTimesNights": "{{price}} TND × {{count}} night",
+    "priceTimesNights_plural": "{{price}} TND × {{count}} nights",
     "bookingRequest": "Booking request",
     "bookingModalTitle": "Send your request",
     "guestCount": "Guests",
@@ -137,5 +155,9 @@
   },
   "footer": {
     "copy": "© {{year}} Résidence Amira. All rights reserved."
+  },
+  "configError": {
+    "title": "Configuration required",
+    "message": "The Supabase connection is not configured yet. Please verify the VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY values in your environment file."
   }
 }

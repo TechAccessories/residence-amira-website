@@ -1,8 +1,10 @@
 // Purpose: Fetch properties for the family account from Supabase.
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FAMILY_OWNER_ID } from '../lib/constants'
 
 export function useProperties() {
+  const { t } = useTranslation()
   const [properties, setProperties] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -32,7 +34,7 @@ export function useProperties() {
         }
       } catch (err) {
         if (!ignore) {
-          setError(err.message || 'Unable to load properties right now.')
+          setError(err.message || t('common.errors.loadProperties'))
         }
       } finally {
         if (!ignore) {

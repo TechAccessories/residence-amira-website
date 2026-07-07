@@ -13,7 +13,7 @@ export function Navbar() {
         Résidence Amira
       </NavLink>
 
-      <nav className="site-nav" aria-label="Primary navigation">
+      <nav className="site-nav" aria-label={t('nav.primaryNavigation')}>
         <NavLink to="/#properties">{t('nav.properties')}</NavLink>
         <NavLink to="/contact">{t('nav.contact')}</NavLink>
 

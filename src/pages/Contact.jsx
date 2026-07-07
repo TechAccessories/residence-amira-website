@@ -100,7 +100,7 @@ export function Contact() {
 
           <li>
             <span className="contact-details-icon">📍</span>
-            <span>Tunisia</span>
+            <span>{t('contact.country')}</span>
           </li>
         </ul>
         </div>
