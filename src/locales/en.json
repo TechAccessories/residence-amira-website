@@ -83,7 +83,7 @@
   "propertyCard": {
     "viewDetails": "View Details",
     "priceUnavailable": "Price available on request",
-    "perNight": "{price} TND / night"
+    "perNight": "{{price}} TND / night"
   },
   "bookingForm": {
     "title": "Request a stay",
